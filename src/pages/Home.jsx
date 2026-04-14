@@ -17,11 +17,11 @@ function Home() {
             <Terminal size={48} />
           </div>
         </div>
-        <h1 className="hero-title">김민우의 C언어 마스터 하기</h1>
+        <h1 className="hero-title">김민우의 C언어 입문</h1>
         <p style={{ fontSize: '1.2rem', color: 'var(--text-muted)', maxWidth: '600px', margin: '0 auto 2.5rem' }}>
           기초부터 심화까지, 체계적인 커리큘럼으로 C언어의 원리를 이해하고 탄탄한 기본기를 다져보세요.
         </p>
-        <Link to={`/post/${chapters[0].id}`} className="btn-primary" style={{ display: 'inline-flex', alignItems: 'center', gap: '0.5rem' }}>
+        <Link to={`/old/post/${chapters[0].id}`} className="btn-primary" style={{ display: 'inline-flex', alignItems: 'center', gap: '0.5rem' }}>
           학습 시작하기 <ArrowRight size={18} />
         </Link>
       </section>
@@ -33,7 +33,7 @@ function Home() {
         
         <div style={{ display: 'grid', gap: '1.5rem', gridTemplateColumns: 'repeat(auto-fill, minmax(300px, 1fr))' }}>
           {chapters.map((chapter) => (
-            <Link to={`/post/${chapter.id}`} key={chapter.id} style={{ color: 'inherit' }}>
+            <Link to={`/old/post/${chapter.id}`} key={chapter.id} style={{ color: 'inherit' }}>
               <div className="glass-panel chapter-card" style={{ height: '100%', display: 'flex', flexDirection: 'column' }}>
                 <h3 style={{ fontSize: '1.2rem', marginBottom: '0.5rem', color: 'var(--text-main)' }}>
                   {chapter.title}

@@ -1,6 +1,6 @@
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Fira+Code:wght@400;500&display=swap');
 
-:root {
+.theme-old {
   --bg-dark: #0f1115;
   --bg-card: rgba(25, 27, 33, 0.7);
   --text-main: #e2e8f0;
@@ -17,7 +17,7 @@
   padding: 0;
 }
 
-body {
+.theme-old-body {
   font-family: 'Inter', sans-serif;
   background-color: var(--bg-dark);
   color: var(--text-main);

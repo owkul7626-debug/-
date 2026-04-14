@@ -27,7 +27,7 @@ function Sidebar() {
         {chapters.map((chapter, idx) => (
           <NavLink
             key={chapter.id}
-            to={`/post/${chapter.id}`}
+            to={`/old/post/${chapter.id}`}
             className={({ isActive }) => `nav-link ${isActive ? 'active' : ''}`}
           >
             <span style={{ 
