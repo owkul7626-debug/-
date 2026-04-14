@@ -1,52 +1,73 @@
 import { Link } from 'react-router-dom';
 import { chapters } from '../data/chapters';
-import { Terminal, ArrowRight } from 'lucide-react';
+import { BookOpen, Box, ArrowLeftRight, RefreshCw, Sigma, TerminalSquare, Layout, Database, FileCode, CheckCircle, ArrowRight } from 'lucide-react';
+
+const iconList = [
+  BookOpen, Box, ArrowLeftRight, RefreshCw, Sigma, 
+  TerminalSquare, Layout, Database, FileCode, CheckCircle
+];
 
 function Home() {
   return (
     <div className="fade-in">
-      <section className="hero-section">
-        <div style={{ display: 'flex', justifyContent: 'center', marginBottom: '1.5rem' }}>
-          <div style={{ 
-            background: 'rgba(59, 130, 246, 0.1)', 
-            padding: '1rem', 
-            borderRadius: '50%',
-            color: 'var(--accent-primary)',
-            boxShadow: '0 0 40px rgba(59, 130, 246, 0.2)'
-          }}>
-            <Terminal size={48} />
+      <section className="hero-card">
+        {/* Background Decorative Brackets */}
+        <div className="hero-bg-shapes">
+          <svg width="200" height="200" viewBox="0 0 200 200" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M70 20 L20 100 L70 180" stroke="#000" strokeWidth="20" strokeLinecap="square"/>
+            <path d="M130 20 L180 100 L130 180" stroke="#000" strokeWidth="20" strokeLinecap="square"/>
+          </svg>
+        </div>
+
+        <div style={{ position: 'relative', zIndex: 2 }}>
+          <span className="hero-badge">LEARN TOGETHER</span>
+          
+          <h1 className="hero-title">
+            김민우의 <strong>C언어</strong> 마스터 하기
+          </h1>
+          
+          <p className="hero-desc">
+            복잡한 논리를 우아하게 설계하는 기술. <strong>C언어</strong>의 기초부터 심화 메모리 
+            구조까지, 프로그래밍의 정수를 학습하는 디지털 매뉴스크립트입니다.
+          </p>
+          
+          <div style={{ display: 'flex', gap: '1rem', alignItems: 'center' }}>
+            <Link to={`/post/${chapters[0]?.id}`} className="btn-primary">
+              학습 시작하기 <ArrowRight size={18} />
+            </Link>
+            <button className="btn-secondary" onClick={() => window.scrollTo({top: 500, behavior: 'smooth'})}>
+              커리큘럼 보기
+            </button>
           </div>
         </div>
-        <h1 className="hero-title">김민우의 C언어 마스터 하기</h1>
-        <p style={{ fontSize: '1.2rem', color: 'var(--text-muted)', maxWidth: '600px', margin: '0 auto 2.5rem' }}>
-          기초부터 심화까지, 체계적인 커리큘럼으로 C언어의 원리를 이해하고 탄탄한 기본기를 다져보세요.
-        </p>
-        <Link to={`/post/${chapters[0].id}`} className="btn-primary" style={{ display: 'inline-flex', alignItems: 'center', gap: '0.5rem' }}>
-          학습 시작하기 <ArrowRight size={18} />
-        </Link>
       </section>
 
-      <section style={{ marginTop: '2rem' }}>
-        <h2 style={{ fontSize: '1.5rem', borderBottom: '1px solid var(--border-color)', paddingBottom: '1rem', marginBottom: '2rem' }}>
-          전체 커리큘럼
-        </h2>
-        
-        <div style={{ display: 'grid', gap: '1.5rem', gridTemplateColumns: 'repeat(auto-fill, minmax(300px, 1fr))' }}>
-          {chapters.map((chapter) => (
-            <Link to={`/post/${chapter.id}`} key={chapter.id} style={{ color: 'inherit' }}>
-              <div className="glass-panel chapter-card" style={{ height: '100%', display: 'flex', flexDirection: 'column' }}>
-                <h3 style={{ fontSize: '1.2rem', marginBottom: '0.5rem', color: 'var(--text-main)' }}>
-                  {chapter.title}
-                </h3>
-                <p style={{ color: 'var(--text-muted)', fontSize: '0.95rem', flexGrow: 1, marginBottom: '1.5rem' }}>
-                  {chapter.summary}
-                </p>
-                <div style={{ color: 'var(--accent-primary)', fontSize: '0.9rem', fontWeight: 600, display: 'flex', alignItems: 'center', gap: '0.25rem' }}>
-                  읽기 <ArrowRight size={14} />
+      <section>
+        <div className="grid-container">
+          {chapters.map((chapter, idx) => {
+            const numberString = (idx + 1).toString().padStart(2, '0');
+            const IconComponent = iconList[idx % iconList.length];
+            
+            return (
+              <Link to={`/post/${chapter.id}`} key={chapter.id} style={{ color: 'inherit' }}>
+                <div className="course-card">
+                  <div className="card-header">
+                    <span className="card-number">{numberString}</span>
+                    <IconComponent size={24} className="card-icon" />
+                  </div>
+                  <h3 className="card-title">
+                    {chapter.title.replace(/^\d+\.\s*/, '')}
+                  </h3>
+                  <p className="card-desc">
+                    {chapter.summary}
+                  </p>
+                  <div className="card-link">
+                    강의 보기 <ArrowRight size={16} style={{ marginLeft: '4px' }} />
+                  </div>
                 </div>
-              </div>
-            </Link>
-          ))}
+              </Link>
+            );
+          })}
         </div>
       </section>
     </div>
